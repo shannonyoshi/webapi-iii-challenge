@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id",validatePostId, async (req, res) => {
   const { id } = req.params;
   try {
     const post = await PostDb.getById(id);
@@ -33,7 +33,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", validatePostId, async (req, res) => {
     const {id} =req.params;
     try{
         const deleted = await PostDb.remove(id)
@@ -48,7 +48,7 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", validatePostId, async (req, res) => {
     try{
          const post = await PostDb.update(req.params.id, req.body)
     if (post) {
