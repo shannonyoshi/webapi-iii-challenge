@@ -104,7 +104,7 @@ async function validateUserId(req, res, next) {
   try {
     const user = await UserDb.getById(id);
     if (user) {
-      req.user = user;
+      // req.user = user;
       next();
     } else {
       res.status(400).json({ messge: "Invalid user ID" });
@@ -115,7 +115,6 @@ async function validateUserId(req, res, next) {
       .status(500)
       .json({ message: "There was an error validating your user ID." });
   }
-  next();
 }
 
 async function validateUser(req, res, next) {
